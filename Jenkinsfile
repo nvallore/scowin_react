@@ -4,10 +4,18 @@ pipeline {
      tools {nodejs "node"}
      
      stages {
-        stage("Build") {
+         stage("Dependency Install") {
             steps {
                 sh "npm install"
-                sh "npm update"
+            }
+        }
+        stage("Test") {
+            steps {
+                sh "npm run test -- --coverage --watchAll=false"
+            }
+        }
+        stage("Build") {
+            steps {
                 sh "npm run build"
             }
         }
