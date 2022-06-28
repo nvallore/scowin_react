@@ -17,7 +17,6 @@ pipeline {
                sh """${tool("SonarQube")}/bin/sonar-scanner \
                -Dsonar.projectKey=scowin-react \
                -Dsonar.sources=. \
-               -Dsonar.login=“admin” -Dsonar.login=“Admin” \
                -Dsonar.projectName=my-app \
                 -Dsonar.projectVersion=1.0 """
                 }
