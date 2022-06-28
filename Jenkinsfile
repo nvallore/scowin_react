@@ -10,6 +10,7 @@ pipeline {
             }
         }
         stage('SonarQube analysis') {
+            steps {
             script {
                def scannerHome = tool 'SonarQube';
                withSonarQubeEnv("SonarQube") {
@@ -19,6 +20,7 @@ pipeline {
                -Dsonar.projectName=my-app \
                 -Dsonar.projectVersion=1.0 """
                 }
+            }
             }
         }
         stage("Quality gate") {
