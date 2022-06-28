@@ -9,6 +9,18 @@ pipeline {
                 sh "npm install"
             }
         }
+        stage('SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh "./gradlew sonarqube"
+                }
+            }
+        }
+        stage("Quality gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
         stage("Test") {
             steps {
                 sh "npm run test -- --coverage --watchAll=false"
