@@ -18,7 +18,8 @@ pipeline {
                -Dsonar.sources=. \
                -Dsonar.projectName=my-app \
                 -Dsonar.projectVersion=1.0 """
-           }
+                }
+            }
         }
         stage("Quality gate") {
             steps {
