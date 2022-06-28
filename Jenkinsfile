@@ -10,11 +10,15 @@ pipeline {
             }
         }
         stage('SonarQube analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh "./gradlew sonarqube"
-                }
-            }
+            script {
+               def scannerHome = tool 'SonarQube';
+               withSonarQubeEnv("SonarQube") {
+               sh """${tool("SonarQube")}/bin/sonar-scanner \
+               -Dsonar.projectKey=scowin-react \
+               -Dsonar.sources=. \
+               -Dsonar.projectName=my-app \
+                -Dsonar.projectVersion=1.0 """
+           }
         }
         stage("Quality gate") {
             steps {
