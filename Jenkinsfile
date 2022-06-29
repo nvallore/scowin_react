@@ -4,12 +4,7 @@ pipeline {
      tools {nodejs "node"}
      
      stages {
-         stage("Dependency Install") {
-            steps {
-                sh "npm install"
-            }
-        }
-        stage('SonarQube analysis') {
+         stage('SonarQube analysis') {
             steps {
             script {
                def scannerHome = tool 'SonarQube';
@@ -28,6 +23,12 @@ pipeline {
                 waitForQualityGate abortPipeline: true
             }
         }
+         stage("Dependency Install") {
+            steps {
+                sh "npm install"
+            }
+        }
+        
         stage("Test") {
             steps {
                 sh "npm run test -- --coverage --watchAll=false"
