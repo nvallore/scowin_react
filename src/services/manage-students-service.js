@@ -1,6 +1,6 @@
 // To get all the student details
 export function getStudentsDetails() {
-    return fetch("http://127.0.0.1:8000/students").then(res => res.json()).then(result => {
+    return fetch("http://localhost:8081/students").then(res => res.json()).then(result => {
         return result;
     }).catch(console.log);
 }
@@ -12,7 +12,7 @@ export function addStudent(requestBody) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestBody)
     };
-    return fetch('http://127.0.0.1:8000/students', requestOptions)
+    return fetch('http://localhost:8081/students', requestOptions)
         .then(response => {
             if (!response.ok && response.status===400) {
                 return Promise.reject("Duplicate ID error");
@@ -29,7 +29,7 @@ export function editStudentDetails(requestBody) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestBody)
     };
-    return fetch(`http://127.0.0.1:8000/students/${requestBody.id}`, requestOptions)
+    return fetch(`http://localhost:8081/students/${requestBody.id}`, requestOptions)
         .then(response => response.json())
         .then(data => data).catch(console.log);
 }

@@ -1,6 +1,6 @@
 // To get details of vaccination drive
 export function getVaccinationDriveDetails() {
-    return fetch("http://127.0.0.1:8000/vaccination-drive").then(res => res.json()).then(result => {
+    return fetch("http://localhost:8081/vaccination-drive").then(res => res.json()).then(result => {
         return result;
     }).catch(console.log);
 }
@@ -12,7 +12,7 @@ export function addVaccinationDrive(requestBody) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestBody)
     };
-    return fetch('http://127.0.0.1:8000/vaccination-drive', requestOptions)
+    return fetch('http://localhost:8081/vaccination-drive', requestOptions)
         .then(response => response.json())
         .then(data => data).catch(console.log);
 }
@@ -24,7 +24,7 @@ export function editVaccinationDrive(requestBody) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestBody)
     };
-    return fetch(`http://127.0.0.1:8000/vaccination-drive/${requestBody.id}`, requestOptions)
+    return fetch(`http://localhost:8081/vaccination-drive/${requestBody.id}`, requestOptions)
         .then(response => response.json())
         .then(data => data).catch(console.log);
 }
