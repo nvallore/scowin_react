@@ -45,5 +45,11 @@ pipeline {
                 sh "cp -r ${WORKSPACE}/build/ /var/www/scowin-react-app/"
             }
         }
+        stage("Selinium Testing") {
+            steps {
+                sh "cd /var/www/scowin-react-app/"
+                sh "node src/test/addStudent_test.js"
+            }
+        }
     }
 }
