@@ -9,7 +9,7 @@ let nextPort = 9222
 options.addArguments(["--remote-debugging-port=" + nextPort])
 
 var browser= new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).setChromeOptions(options).build();
-browser.get('http://localhost:3001/manageStudent');
+browser.get('http://localhost:3000/manageStudent');
 const By = webdriver.By;
 var x2 = browser.then(() => browser.findElement(By.css('#add-student')).click())
 .then(() => browser.findElement(By.css('#student-name')).sendKeys('Jhanvi P'))
